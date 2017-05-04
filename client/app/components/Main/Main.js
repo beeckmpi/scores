@@ -34,7 +34,7 @@ const Main = (props) => {
                     <ListItem  style={{color:"#fff"}} primaryText="Live" />
                   </List>
                   <List>
-                    <ListItem style={{color:"#fff"}} primaryText="Leagues" />
+                    <ListItem style={{color:"#fff"}} containerElement={<Link to="/Leagues/index" />} primaryText="Leagues" />
                     <ListItem style={{color:"#fff"}} primaryText="Clubs" />
                     <ListItem style={{color:"#fff"}} containerElement={<Link to="/Teams" />}  primaryText="Teams" />
                     <ListItem style={{color:"#fff"}} primaryText="Players" />

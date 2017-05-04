@@ -119,7 +119,7 @@ const Home = (props) => {
         </div>
       );
     }
-    return <Login />;
+    return "";
   };
   return <div>{home()}</div>;
 };

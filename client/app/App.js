@@ -9,6 +9,8 @@ import store from './store';
 //routes
 import Home from './components/Home/Home';
 import Main from './components/Main/Main';
+import Leagues from './components/Leagues/Leagues';
+import addLeague from './components/Leagues/Add';
 import Teams from './components/Teams/Teams';
 
 ReactDOM.render(
@@ -19,6 +21,8 @@ ReactDOM.render(
           <Main />
           <section style={{marginLeft:"95pt"}}>
             <Route exact path="/" component={Home}/>
+            <Route path="/Leagues/index" component={Leagues} />
+            <Route path="/Leagues/add" component={addLeague} />
             <Route path="/Teams" component={Teams} />
           </section>
         </div>

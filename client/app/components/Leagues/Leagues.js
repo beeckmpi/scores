@@ -27,6 +27,7 @@ const Leagues = (props) => {
                   containerElement={<Link to="/Leagues/add" />}
                   secondary={true}
                   icon={<FontIcon className="muidocs-icon-custom-github" />}
+                  styleName="addButton"
                 />
               <Paper styleName="subCat">
                 <h4>My Leagues</h4>

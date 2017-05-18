@@ -15,59 +15,87 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
-const addLeagues = (props) => {
-  const { user } = props;
-  const form = () => {
+class addLeagues extends React.Component {
+//const addLeagues = (props, state) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leagueName : "",
+      country: "",
+      region: "",
+      regionName: ""
+    };
+  }
+  handleChange = (event) => this.setState({[event.target.name]: event.target.value});
+  handleChangeSelect = (type) => (event, index, value) => this.setState({[type]: value});
+  render() {
+    const user = this.props.user;
     if (user && user.username) {
       return (
         <section styleName="SectionContainer">
           <div styleName="catTitle">Add League</div>
-          <Paper styleName="subCat">
-            <div>
-              <TextField name="leaguename" floatingLabelText="League Name" />
+          <Paper styleName="subCat" style={{display:"flex"}} >
+            <div style={{width:"300px", minHeight: '400px', padding: "130px 15px", margin: "0 25pt 0 5pt", border: "5px dashed #888"}}>
+              Drag an image here, or click to select one.
             </div>
             <div>
-              <SelectField
-                floatingLabelText="Country"
-              >
-                <MenuItem value={1} primaryText="Austria" />
-                <MenuItem value={1} primaryText="Belgium" />
-                <MenuItem value={1} primaryText="Cech Republic" />
-                <MenuItem value={5} primaryText="Croatia" />
-                <MenuItem value={1} primaryText="Denmark" />
-                <MenuItem value={2} primaryText="England" />
-                <MenuItem value={1} primaryText="Finland" />
-                <MenuItem value={3} primaryText="France" />
-                <MenuItem value={4} primaryText="Germany" />
-                <MenuItem value={1} primaryText="Greece" />
-                <MenuItem value={1} primaryText="Hungary" />
-                <MenuItem value={5} primaryText="Italy" />
-                <MenuItem value={5} primaryText="Ireland" />
-                <MenuItem value={1} primaryText="Luxembourg" />
-                <MenuItem value={5} primaryText="Nortern Ireland" />
-                <MenuItem value={1} primaryText="Norway" />
-                <MenuItem value={1} primaryText="Polen" />
-                <MenuItem value={5} primaryText="Portugal" />
-                <MenuItem value={1} primaryText="Romania" />
-                <MenuItem value={5} primaryText="Scotland" />
-                <MenuItem value={1} primaryText="Serbia" />
-                <MenuItem value={1} primaryText="Slovakia" />
-                <MenuItem value={1} primaryText="Slovenia" />
-                <MenuItem value={5} primaryText="Spain" />
-                <MenuItem value={1} primaryText="Sweden" />
-                <MenuItem value={5} primaryText="Switserland" />
-                <MenuItem value={5} primaryText="The Netherlands" />
-                <MenuItem value={5} primaryText="Wales" />
-              </SelectField>
-            </div>
-            <div>
-              <SelectField
-                floatingLabelText="Regional/National"
-              >
-                <MenuItem value={1} primaryText="National" />
-                <MenuItem value={1} primaryText="Provincial" />
-                <MenuItem value={1} primaryText="Regional" />
-              </SelectField>
+              <div>
+                <TextField name="leagueName" value={this.state.leagueName} onChange={this.handleChange} floatingLabelText="League Name" />
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Country"
+                  value={this.state.country}
+                  name="country"
+                  id="country"
+                  onChange={this.handleChangeSelect("country")}
+                >
+                  <MenuItem key={"Austria"} value={"Austria"} primaryText="Austria" />
+                  <MenuItem key={"Belgium"} value={"Belgium"} primaryText="Belgium" />
+                  <MenuItem key={"Cech Republic"} value={"Cech Republic"} primaryText="Cech Republic" />
+                  <MenuItem value={5} primaryText="Croatia" />
+                  <MenuItem value={1} primaryText="Denmark" />
+                  <MenuItem value={2} primaryText="England" />
+                  <MenuItem value={1} primaryText="Finland" />
+                  <MenuItem value={3} primaryText="France" />
+                  <MenuItem value={4} primaryText="Germany" />
+                  <MenuItem value={1} primaryText="Greece" />
+                  <MenuItem value={1} primaryText="Hungary" />
+                  <MenuItem value={5} primaryText="Italy" />
+                  <MenuItem value={5} primaryText="Ireland" />
+                  <MenuItem value={1} primaryText="Luxembourg" />
+                  <MenuItem value={5} primaryText="Nortern Ireland" />
+                  <MenuItem value={1} primaryText="Norway" />
+                  <MenuItem value={1} primaryText="Polen" />
+                  <MenuItem value={5} primaryText="Portugal" />
+                  <MenuItem value={1} primaryText="Romania" />
+                  <MenuItem value={5} primaryText="Scotland" />
+                  <MenuItem value={1} primaryText="Serbia" />
+                  <MenuItem value={1} primaryText="Slovakia" />
+                  <MenuItem value={1} primaryText="Slovenia" />
+                  <MenuItem value={5} primaryText="Spain" />
+                  <MenuItem value={1} primaryText="Sweden" />
+                  <MenuItem value={5} primaryText="Switserland" />
+                  <MenuItem value={5} primaryText="The Netherlands" />
+                  <MenuItem value={5} primaryText="Wales" />
+                </SelectField>
+              </div>
+              <div>
+                <SelectField
+                  floatingLabelText="Regional/National"
+                  value={this.state.region}
+                  name="region"
+                  id="region"
+                  onChange={this.handleChangeSelect("region")}
+                >
+                  <MenuItem key="National" value={"National"} primaryText="National" />
+                  <MenuItem key="Provincial" value={"Provincial"} primaryText="Provincial" />
+                  <MenuItem key="Regional" value={"Regional"} primaryText="Regional" />
+                </SelectField>
+              </div>
+              <div>
+                <TextField name="regionName" value={this.state.regionName} onChange={this.handleChange} floatingLabelText="Region Name" />
+              </div>
             </div>
           </Paper>
         </section>
@@ -75,11 +103,11 @@ const addLeagues = (props) => {
     }
     return "";
   };
-  return <div>{form()}</div>;
 };
 
 addLeagues.propTypes = {
   user: React.PropTypes.object,
+  formState: React.PropTypes.object
 };
 
 const mapStateToProps = state => ({

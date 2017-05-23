@@ -1,3 +1,6 @@
 export const ItemTypes = {
-  TODO: 'todo'
+  TODO: 'todo',
+  LEAGUES: 'leagues',
+  IMAGES: 'images'
+
 };

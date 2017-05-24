@@ -47,9 +47,12 @@ Meteor.methods({
   editLeagues(id, data) {
     return Leagues.update({_id: id}, {$set: data});
   },
-  'uploadImage': function (fileData) {
+  uploadImage(fileData) {
     return Images.insert({data:fileData})
-   }
+  },
+  getImages(){
+    return Images.find().fetch();
+  },
 });
 
 

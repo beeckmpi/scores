@@ -9,6 +9,7 @@ import TextField from 'material-ui/TextField';
 import {List, ListItem} from 'material-ui/List';
 import { connect } from 'react-redux';
 import style from './home.styl';
+import Animations from './animations.css'
 import TodoContainer from '../Todo/TodoContainer'
 import Login from '../Login/Login';
 import asteroid from '../../common/asteroid';
@@ -26,44 +27,76 @@ injectTapEventPlugin();
 
 const tilesData = [
   {
-    img: 'images/grid-list/00-52-29-429_640.jpg',
-    title: 'Breakfast',
-    author: 'jill111',
+    title: 'Jupiler Pro League',
+    author: 'Belgium',
   },
   {
-    img: 'images/grid-list/burger-827309_640.jpg',
-    title: 'Tasty burger',
-    author: 'pashminu',
+    title: 'Eredivisie',
+    author: 'The Netherlands',
   },
   {
-    img: 'images/grid-list/camera-813814_640.jpg',
-    title: 'Camera',
-    author: 'Danson67',
+    title: 'Premier League',
+    author: 'England',
   },
   {
-    img: 'images/grid-list/morning-819362_640.jpg',
-    title: 'Morning',
-    author: 'fancycrave1',
+    title: 'Primera Division',
+    author: 'Spain',
   },
   {
-    img: 'images/grid-list/hats-829509_640.jpg',
-    title: 'Hats',
-    author: 'Hans',
+    title: 'Seria A',
+    author: 'Italy',
   },
   {
-    img: 'images/grid-list/honey-823614_640.jpg',
-    title: 'Honey',
-    author: 'fancycravel',
+    title: 'Bundesliga',
+    author: 'Germany',
   },
   {
-    img: 'images/grid-list/vegetables-790022_640.jpg',
-    title: 'Vegetables',
-    author: 'jill111',
+    title: 'Ligue 1',
+    author: 'France',
   },
   {
-    img: 'images/grid-list/water-plant-821293_640.jpg',
-    title: 'Water plant',
-    author: 'BkrmadtyaKarki',
+    title: 'Premiership',
+    author: 'Scotland',
+  },
+  {
+    title: 'Superligaen',
+    author: 'Denmark',
+  },
+  {
+    title: 'Ekstraklasa',
+    author: 'Poland',
+  },
+  {
+    title: 'Bundesliga',
+    author: 'Austria',
+  },
+  {
+    title: 'Super League',
+    author: 'Switserland',
+  },
+  {
+    title: 'SuperLeague',
+    author: 'Greece',
+  },
+  {
+    title: 'Tippeligaen',
+    author: 'Norway',
+  },
+  {
+    title: 'Allsvenskan',
+    author: 'Sweden',
+  },
+  {
+    title: 'Veikkausliiga',
+    author: 'Finland',
+  },
+  {
+    title: 'First Football League',
+    author: 'Croatia',
+  },
+  {
+    title: 'Liga',
+    author: 'Czech',
   },
 ];
 const styles = {
@@ -91,29 +124,29 @@ const Home = (props) => {
   const handleLogout = () => {
     asteroid.logout();
   };
+  const handleClick = (e) => {
+    console.log(e.currentTarget);
+    e.currentTarget.className = "gridItem active";
+  }
+
   const home = () => {
     if (user && user.username) {
       return (
         <div styleName="todo-wrapper">
           <div styleName="ContentContainer">
             <section styleName="homecontainer">
-              <GridList
-                cellHeight={180}
-                style={styles.gridList}
-                cols={6}
-              >
-                <Subheader>Featured leagues</Subheader>
+              <div styleName="catTitle">Home</div>
+              <div className="gridcontainer">
                 {tilesData.map((tile) => (
-                  <GridTile
-                    key={tile.img}
-                    title={tile.title}
-                    subtitle={<span>by <b>{tile.author}</b></span>}
-                    actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                  >
-                    <img src={tile.img} />
-                  </GridTile>
+                  <Paper key={tile.title+'_'+tile.author} className="gridItem" onClick={(e) => handleClick(e)}>
+                    <section id="info" className="info">
+                      <div className="infoTitle">{tile.title}</div>
+                      <div className="infoAuthor">{tile.author}</div>
+                    </section>
+                    <section id="placeholder" className="placeholder">&nbsp;</section>
+                  </Paper>
                 ))}
-              </GridList>
+              </div>
             </section>
           </div>
         </div>
@@ -138,4 +171,4 @@ const mapDispatchToProps = dispatch => ({
   dispatchCallAddTodo: data => dispatch(callAddTodo(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(cssModules(Home, style));
+export default connect(mapStateToProps, mapDispatchToProps)(cssModules(Home, style, {allowMultiple: true}));

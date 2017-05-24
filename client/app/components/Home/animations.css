@@ -1,0 +1,48 @@
+.gridcontainer .gridItem.active {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 350px;
+    height: 600px;
+    z-index: 10;
+}
+
+.gridItem.active .info {
+  position: relative;
+}
+
+.gridcontainer {
+  display: flex;
+  width: 99%;
+  flex-flow: row wrap;
+  position: relative;
+}
+.gridcontainer .gridItem{
+  width: 165px;
+  margin: 0px 15px 15px 0px;
+  position: relative;
+  transition: transform 3s ease;
+}
+.gridcontainer .placeholder {
+  min-width: 150px;
+  min-height: 175px;
+  background-color: #ccc;
+}
+.gridcontainer .info {
+  background-color: #777;
+  color: #fff;
+  padding: 5px 7px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.8;
+}
+.gridcontainer .info .infoTitle{
+  font-weight: bold;
+  font-size: smaller;
+}
+
+.gridcontainer .info .infoAuthor{
+  font-size: x-small;
+}

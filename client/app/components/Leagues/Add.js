@@ -68,7 +68,6 @@ class addLeagues extends React.Component {
             <Dropzone onDrop={(files) => this.onDrop(files)} style={{width:"300px", minHeight: '400px', padding: "130px 15px", margin: "0 25pt 0 5pt", border: "5px dashed #888"}}>
               Drag an image here, or click to select one.
             </Dropzone>
-            {this.state.filesPreview}
             <div>
               <div>
                 <TextField name="leagueName" value={this.state.leagueName} onChange={this.handleChange} floatingLabelText="League Name" />

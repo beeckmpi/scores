@@ -1,14 +1,21 @@
 .gridcontainer .gridItem.active {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 350px;
     height: 600px;
+    width: 300px;
     z-index: 10;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
-
+.gridcontainer .gridItem.active .extraInfo{
+    display: inherit;
+    height: 500px;
+}
 .gridItem.active .info {
-  position: relative;
+
+  left: 0px;
+  right: 0px;
+  bottom: 550px;
+  transition: all 0.2s linear;
 }
 
 .gridcontainer {
@@ -18,10 +25,40 @@
   position: relative;
 }
 .gridcontainer .gridItem{
+  height: 175px;
   width: 165px;
   margin: 0px 15px 15px 0px;
   position: relative;
-  transition: transform 3s ease;
+  transition: all .5s ease;
+  transition: transform .5s ease;
+}
+.gridcontainer .gridItem .extraInfo{
+  display:none;
+  min-width: 300px;
+  height: 0;
+}
+.gridcontainer .gridItem.hidden{
+  display:none;
+  width: 165px;
+  margin: 0px 15px 15px 0px;
+  position: relative;
+  animation: mymove 5s;
+  transition: transform .1s ease;
+}
+
+.extraInfo .details {
+}
+
+.extraInfo .details div {
+  min-width: 110px;
+  display: inline-block;
+  font-size: 12pt;
+  margin: 12px;
+  color: #555;
+}
+
+.extraInfo .details div:first-child {
+  text-align: right;
 }
 .gridcontainer .placeholder {
   min-width: 150px;
@@ -33,10 +70,12 @@
   color: #fff;
   padding: 5px 7px;
   position: absolute;
+  top: auto;
   bottom: 0px;
   left: 0px;
   right: 0px;
   opacity: 0.8;
+  transition: all 0.3s ease;
 }
 .gridcontainer .info .infoTitle{
   font-weight: bold;

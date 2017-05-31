@@ -14,6 +14,7 @@ import TodoContainer from '../Todo/TodoContainer'
 import Login from '../Login/Login';
 import asteroid from '../../common/asteroid';
 import SearchIcon from 'material-ui/svg-icons/action/search';
+import { callAddLeague } from '../Leagues/LeagueAsyncActions';
 
 //test
 import {GridList, GridTile} from 'material-ui/GridList';
@@ -27,79 +28,169 @@ injectTapEventPlugin();
 
 const tilesData = [
   {
-    title: 'Jupiler Pro League',
-    author: 'Belgium',
+    name: 'Jupiler Pro League',
+    country: 'Belgium',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Eredivisie',
-    author: 'The Netherlands',
+    name: 'Eredivisie',
+    country: 'The Netherlands',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://eredivisie.nl',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Premier League',
-    author: 'England',
+    name: 'Premier League',
+    country: 'England',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'https://www.premierleague.com',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Primera Division',
-    author: 'Spain',
+    name: 'Primera Division',
+    country: 'Spain',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://www.laliga.es/',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Seria A',
-    author: 'Italy',
+    name: 'Seria A',
+    country: 'Italy',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://www.legaseriea.it',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Bundesliga',
-    author: 'Germany',
+    name: 'Bundesliga',
+    country: 'Germany',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://bundesliga.com',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Ligue 1',
-    author: 'France',
+    name: 'Ligue 1',
+    country: 'France',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://www.ligue1.com/',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Premiership',
-    author: 'Scotland',
+    name: 'Premiership',
+    country: 'Scotland',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Superligaen',
-    author: 'Denmark',
+    name: 'Superligaen',
+    country: 'Denmark',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Ekstraklasa',
-    author: 'Poland',
+    name: 'Ekstraklasa',
+    country: 'Poland',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Bundesliga',
-    author: 'Austria',
+    name: 'Bundesliga',
+    country: 'Austria',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Super League',
-    author: 'Switserland',
+    name: 'Super League',
+    country: 'Switserland',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'SuperLeague',
-    author: 'Greece',
+    name: 'SuperLeague',
+    country: 'Greece',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Tippeligaen',
-    author: 'Norway',
+    name: 'Tippeligaen',
+    country: 'Norway',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Allsvenskan',
-    author: 'Sweden',
+    name: 'Allsvenskan',
+    country: 'Sweden',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Veikkausliiga',
-    author: 'Finland',
+    name: 'Veikkausliiga',
+    country: 'Finland',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'First Football League',
-    author: 'Croatia',
+    name: 'First Football League',
+    country: 'Croatia',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
   {
-    title: 'Liga',
-    author: 'Czech',
+    name: 'Liga',
+    country: 'Czech',
+    region: 'National',
+    division: 'first',
+    founded: '1892',
+    website: 'http://jupilerproleague.be',
+    tile: 'gridItem shown'
   },
 ];
-const styles = {
+let styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -108,42 +199,81 @@ const styles = {
   gridList: {
     overflowY: 'auto',
   },
+  gridItem: {
+    position: 'relative'
+  }
 };
+
 const Home = (props) => {
-  const { todos, dispatchCallAddTodo, user } = props;
-  const handleAddTodo = (e) => {
-    if (e.key === 'Enter') {
-      const elem = e.target;
-      e.preventDefault();
-      if (elem.value) {
-        dispatchCallAddTodo(elem.value);
-        elem.value = '';
-      }
-    }
-  };
+  const { todos, user, dispatchCallAddLeague, leagues } = props;
   const handleLogout = () => {
     asteroid.logout();
   };
   const handleClick = (e) => {
-    console.log(e.currentTarget);
-    e.currentTarget.className = "gridItem active";
+    console.log(e.currentTarget.id);
+    leagues.map((tile) => {
+      if(e.currentTarget.id==tile.message.name+'_'+tile.message.country){
+        if (tile.message.tile == 'gridItem shown'){
+          tile.message.tile = "gridItem active";
+        } else {
+          tile.message.tile = 'gridItem shown';
+        }
+      } else {
+        if (tile.message.tile != "gridItem hidden"){
+          tile.message.tile = "gridItem hidden";
+        } else {
+          tile.message.tile = 'gridItem shown';
+        }
+      }
+    });
   }
 
   const home = () => {
     if (user && user.username) {
+      tilesData.map((tile) => {
+        var exists = 'FALSE';
+        leagues.map((league) => {
+          if (tile.name == league.message.name && tile.country == league.message.country){
+            exists = 'TRUE';
+            console.log('1 _ '+exists);
+          }
+        })
+        console.log('2 _ '+exists);
+        if(exists == 'FALSE'){
+          dispatchCallAddLeague(tile);
+        }
+      });
       return (
         <div styleName="todo-wrapper">
           <div styleName="ContentContainer">
             <section styleName="homecontainer">
               <div styleName="catTitle">Home</div>
               <div className="gridcontainer">
-                {tilesData.map((tile) => (
-                  <Paper key={tile.title+'_'+tile.author} className="gridItem" onClick={(e) => handleClick(e)}>
+                {leagues.map((tile) => (
+                  <Paper key={tile.id} id={tile.message.name+'_'+tile.message.country} style={styles.gridItem} className={tile.message.tile} onClick={(e) => handleClick(e)}>
                     <section id="info" className="info">
-                      <div className="infoTitle">{tile.title}</div>
-                      <div className="infoAuthor">{tile.author}</div>
+                      <div className="infoTitle">{tile.message.name}</div>
+                      <div className="infocountry">{tile.message.country}</div>
                     </section>
                     <section id="placeholder" className="placeholder">&nbsp;</section>
+                    <section className="extraInfo">
+                      <div className="details">
+                        <div><strong>Region:</strong></div>
+                        <div>{tile.message.region}</div>
+                      </div>
+                      <div className="details">
+                        <div><strong>Division:</strong></div>
+                        <div>{tile.message.division}</div>
+                      </div>
+                      <div className="details">
+                        <div><strong>Founded:</strong></div>
+                        <div>{tile.message.founded}</div>
+                      </div>
+                      <div className="details">
+                        <div><strong>Website:</strong></div>
+                        <div><a href="{tile.message.website}">{tile.website}</a></div>
+                      </div>
+                    </section>
                   </Paper>
                 ))}
               </div>
@@ -158,17 +288,18 @@ const Home = (props) => {
 };
 
 Home.propTypes = {
-  todos: React.PropTypes.array.isRequired,
-  dispatchCallAddTodo: React.PropTypes.func.isRequired,
+  leagues: React.PropTypes.array.isRequired,
+  dispatchCallAddLeague: React.PropTypes.func.isRequired,
   user: React.PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   todos: state.todos,
   user: state.user,
+  leagues: state.leagues,
 });
 const mapDispatchToProps = dispatch => ({
-  dispatchCallAddTodo: data => dispatch(callAddTodo(data)),
+  dispatchCallAddLeague: data => dispatch(callAddLeague(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(cssModules(Home, style, {allowMultiple: true}));
